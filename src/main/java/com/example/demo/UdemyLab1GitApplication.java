@@ -1,7 +1,9 @@
 package com.example.demo;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.PostConstruct;
 
@@ -19,19 +21,17 @@ public class UdemyLab1GitApplication {
 	public void init() {
 		List<Team> list = new ArrayList<>();
 
-		Team team = new Team();
-		team.setLocation("Harlem");
-		team.setName("Globetrotters");
-		list.add(team);
+		Set<Player> set = new HashSet<>();
+		set.add(new Player("Big Easy", "Showman"));
+		set.add(new Player("Buckets", "Guard"));
+		set.add(new Player("Dizzy", "Guard"));
 
-		team = new Team();
-		team.setLocation("Washington");
-		team.setName("Generals");
-		list.add(team);
+		list.add(new Team("Harlem", "Globetrotters", set));
+		list.add(new Team("Washington","Generals", null));
 
 		teamRepository.save(list);
 	}
-	
+
 	public static void main(String[] args) {
 		SpringApplication.run(UdemyLab1GitApplication.class, args);
 	}
